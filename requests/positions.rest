@@ -1,0 +1,35 @@
+### Listar todas as posições
+GET http://localhost:3001/api/positions
+Accept: application/json
+
+### Criar uma nova posição
+POST http://localhost:3001/api/positions
+Content-Type: application/json
+
+{
+  "projectId": "82a5db5b-5a7c-4200-944f-0feb2de0243d",
+  "title": "Desenvolvedor Frontend",
+  "description": "Responsável pelo front-end",
+  "role": "Dev",
+  "numberOfResources": 2,
+  "start_date": "2025-09-01T00:00:00.000Z",
+  "end_date": "2025-12-31T00:00:00.000Z",
+  "created_by": "admin"
+}
+
+### Buscar posição por ID
+GET http://localhost:3001/api/positions/<<POSITION_ID>>
+Accept: application/json
+
+### Atualizar posição
+PUT http://localhost:3001/api/positions/<<POSITION_ID>>
+Content-Type: application/json
+
+{
+  "title": "Desenvolvedor Backend",
+  "role": "Dev Backend"
+}
+
+### Soft delete posição
+DELETE http://localhost:3001/api/positions/<<POSITION_ID>>
+x-role: admin

@@ -1,0 +1,32 @@
+### Listar todas as alocações
+GET http://localhost:3001/api/allocations
+Accept: application/json
+
+### Criar uma alocação
+POST http://localhost:3001/api/allocations
+Content-Type: application/json
+
+{
+  "positionId": "2c399904-401c-4205-abdf-38ee96ccf435",
+  "resourceId": "ab4e5227-1427-44f1-a585-9afac6a94ba3",
+  "status": "alocado",
+  "start_date": "2025-09-01T00:00:00.000Z",
+  "end_date": "2025-12-31T00:00:00.000Z",
+  "created_by": "admin"
+}
+
+### Buscar alocação por ID
+GET http://localhost:3001/api/allocations/<<ALLOCATION_ID>>
+Accept: application/json
+
+### Atualizar alocação
+PUT http://localhost:3001/api/allocations/<<ALLOCATION_ID>>
+Content-Type: application/json
+
+{
+  "status": "finalizado"
+}
+
+### Soft delete alocação
+DELETE http://localhost:3001/api/allocations/<<ALLOCATION_ID>>
+x-role: admin

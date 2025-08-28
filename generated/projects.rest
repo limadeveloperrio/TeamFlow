@@ -1,0 +1,38 @@
+### Health Check
+GET http://localhost:3001/api/hello
+
+### Listar todos os projetos
+GET http://localhost:3001/api/projects
+Content-Type: application/json
+
+### Obter projeto por ID
+GET http://localhost:3001/api/projects/{{projectId}}
+Content-Type: application/json
+
+### Criar novo projeto
+POST http://localhost:3001/api/projects
+Content-Type: application/json
+
+{
+  "name": "Novo Projeto XPTO",
+  "description": "Descrição do projeto de teste",
+  "start_date": "2025-09-01T00:00:00.000Z",
+  "end_date": "2025-12-31T00:00:00.000Z",
+  "status": "ativo",
+  "created_by": "admin"
+}
+
+### Atualizar projeto
+PUT http://localhost:3001/api/projects/{{projectId}}
+Content-Type: application/json
+
+{
+  "name": "Projeto XPTO Atualizado",
+  "description": "Descrição alterada",
+  "status": "concluido",
+  "modified_by": "admin"
+}
+
+### Deletar projeto (soft delete)
+DELETE http://localhost:3001/api/projects/{{projectId}}
+Content-Type: application/json

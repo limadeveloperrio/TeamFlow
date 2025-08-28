@@ -1,15 +1,78 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  description String?
+  start_date  DateTime?
+  end_date    DateTime?
+  status      String?
+  created_by  String?
+  modified_by String?
+  created_on  DateTime   @default(now())
+  modified_on DateTime   @updatedAt
+  isDeleted   Boolean    @default(false)
+
+  positions   Position[]
+}
+
+model Position {
+  id                String     @id @default(uuid())
+  projectId         String
+  title             String
+  description       String?
+  role              String?
+  numberOfResources Int?
+  start_date        DateTime?
+  end_date          DateTime?
+  created_by        String?
+  modified_by       String?
+  created_on        DateTime   @default(now())
+  modified_on       DateTime   @updatedAt
+  isDeleted        Boolean    @default(false)
+
+  project   Project    @relation(fields: [projectId], references: [id])
+  allocations Allocation[]
+}
+
+model Allocation {
+  id          String    @id @default(uuid())
+  positionId  String
+  resourceId  String
+  status      String?
+  start_date  DateTime?
+  end_date    DateTime?
+  created_by  String?
+  modified_by String?
+  created_on  DateTime  @default(now())
+  modified_on DateTime  @updatedAt
+  isDeleted   Boolean   @default(false)
+
+  position Position @relation(fields: [positionId], references: [id])
+  resource Resource @relation(fields: [resourceId], references: [id])
+}
+
+model Resource {
+  id             String     @id @default(uuid())
+  first_name     String
+  last_name      String
+  birth_date     DateTime?
+  role           String?
+  availability   String?
+  cv_uri         String?
+  cv_modified_on DateTime?
+  created_by     String?
+  modified_by    String?
+  created_on     DateTime   @default(now())
+  modified_on    DateTime   @updatedAt
+  isDeleted      Boolean    @default(false)
+
+  allocations Allocation[]
 }

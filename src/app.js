@@ -1,24 +1,21 @@
-const express = require("express");
-const helmet = require("helmet");
-const morgan = require("morgan");
-const cors = require("cors");
-
-const routes = require("./routes");
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import routes from './routes/index.js';
+import { errorHandler } from './middlewares/error.js';
+import { notFound } from './middlewares/notFound.js';
 
 const app = express();
 
-// Middlewares globais
-app.use(helmet());
-app.use(morgan("dev"));
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
 
-// Exemplo de rota
-app.get("/", (req, res) => {
-  res.send("API TeamFlow funcionando 🚀");
-});
+app.get('/', (req, res) => res.json({ status: 'API TeamFlow funcionando 🚀' }));
 
-// Rotas principais
-app.use("/api", routes);
+app.use('/api', routes); app.use(notFound);
+app.use(errorHandler);
 
-module.exports = app;
+export default app;

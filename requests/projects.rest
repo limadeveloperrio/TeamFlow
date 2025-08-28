@@ -1,0 +1,50 @@
+### Listar todos os projetos
+GET http://localhost:3001/api/projects
+Accept: application/json
+
+###
+
+### Obter um projeto pelo nome
+GET http://localhost:3001/api/projects/ABB-Transformation
+Accept: application/json
+
+###
+
+### Obter um projeto com posições pelo nome
+GET http://localhost:3001/api/projects/Novo Projeto XPTO
+Accept: application/json
+
+###
+
+### Criar um novo projeto
+POST http://localhost:3001/api/projects
+Content-Type: application/json
+
+{
+  "name": "LImA-Transformation",
+  "description": "Projeto de transformação digital para a Acme Corp envolvendo automação de processos e integração de sistemas.",
+  "start_date": "2025-09-01T00:00:00.000Z",
+  "end_date": "2026-03-31T00:00:00.000Z",
+  "status": "in progress",
+  "created_by": "admin",
+  "modified_by": "admin"
+}
+
+###
+
+### Atualizar um projeto pelo nome
+PUT http://localhost:3001/api/projects/Novo Projeto XPTO
+Content-Type: application/json
+
+{
+  "description": "Descrição atualizada lima",
+  "status": "pendente"
+}
+
+###
+
+### Remover (soft delete) um projeto pelo nome
+DELETE http://localhost:3001/api/projects/Novo%20Projeto%20XPTO
+Content-Type: application/json
+x-role: admin
+

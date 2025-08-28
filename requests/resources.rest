@@ -1,0 +1,34 @@
+### Listar todos os recursos
+GET http://localhost:3001/api/resources
+Accept: application/json
+
+### Criar recurso
+POST http://localhost:3001/api/resources
+Content-Type: application/json
+
+{
+  "first_name": "João",
+  "last_name": "Silva",
+  "birth_date": "1990-01-15T00:00:00.000Z",
+  "role": "Dev",
+  "availability": "Full-time",
+  "cv_uri": "https://example.com/cv.pdf",
+  "created_by": "admin"
+}
+
+### Buscar recurso por ID
+GET http://localhost:3001/api/resources/<<RESOURCE_ID>>
+Accept: application/json
+
+### Atualizar recurso
+PUT http://localhost:3001/api/resources/<<RESOURCE_ID>>
+Content-Type: application/json
+
+{
+  "availability": "Part-time",
+  "role": "Senior Dev"
+}
+
+### Soft delete recurso
+DELETE http://localhost:3001/api/resources/<<RESOURCE_ID>>
+x-role: admin
